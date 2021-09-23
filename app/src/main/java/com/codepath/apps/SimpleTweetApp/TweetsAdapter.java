@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.SimpleTweetApp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,12 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.codepath.apps.restclienttemplate.models.Tweet;
-
-import org.w3c.dom.Text;
+import com.codepath.apps.SimpleTweetApp.models.Tweet;
 
 import java.util.List;
 
+/*
+    adapter for our RecyclerView
+    it inflates a item_tweet.fxml view
+    and binds tweet data to each view
+ */
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder>{
 
     Context context;
@@ -35,7 +38,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
-    // bind values based on the position of the element
+    // bind values based on the position of the element in RV
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // retrieves data at position
@@ -49,24 +52,40 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return tweets.size();
     }
 
+    // Clean all elements of the recycler
+    public void clear(){
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Tweet> tweetList){
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
+    }
+
     // our ViewHolder that inflates the view
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvTime = itemView.findViewById(R.id.tvTime);
         }
 
+        // binds all the tweet data to a specific tweet aka instance of item_tweet.fxml which is loaded into the RecyclerView
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            tvTime.setText(TimeFormatter.getTimeDifference(tweet.time));
         }
     }
 }

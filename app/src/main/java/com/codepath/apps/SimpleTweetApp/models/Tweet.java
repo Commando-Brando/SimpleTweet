@@ -1,4 +1,6 @@
-package com.codepath.apps.restclienttemplate.models;
+package com.codepath.apps.SimpleTweetApp.models;
+
+import com.codepath.apps.SimpleTweetApp.TimeFormatter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,12 +14,14 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String time;
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        tweet.time = jsonObject.getString("created_at");
         return tweet;
     }
 
@@ -28,4 +32,9 @@ public class Tweet {
         }
         return tweets;
     }
+
+    public static String getFormattedTimestamp(String jsonraw){
+        return TimeFormatter.getTimeDifference(jsonraw);
+    }
+
 }

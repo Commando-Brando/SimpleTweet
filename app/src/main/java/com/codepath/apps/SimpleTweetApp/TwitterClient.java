@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.SimpleTweetApp;
 
 import android.content.Context;
 
@@ -17,7 +17,7 @@ import com.github.scribejava.core.builder.api.BaseApi;
  * Key and Secret are provided by the developer site for the given API i.e dev.twitter.com
  * Add methods for each relevant endpoint in the API.
  * 
- * NOTE: You may want to rename this object based on the service i.e TwitterClient or FlickrClient
+ *
  * 
  */
 public class TwitterClient extends OAuthBaseClient {
