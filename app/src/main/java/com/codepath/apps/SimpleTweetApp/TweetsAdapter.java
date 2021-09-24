@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.SimpleTweetApp.models.Tweet;
 
 import java.util.List;
@@ -70,6 +71,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvDisplayName;
         TextView tvTime;
 
         public ViewHolder(@NonNull View itemView) {
@@ -77,14 +79,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvDisplayName = itemView.findViewById(R.id.tvDisplayName);
             tvTime = itemView.findViewById(R.id.tvTime);
+
         }
 
         // binds all the tweet data to a specific tweet aka instance of item_tweet.fxml which is loaded into the RecyclerView
         public void bind(Tweet tweet) {
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
-            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            tvDisplayName.setText(tweet.user.displayName);
+            Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             tvTime.setText(TimeFormatter.getTimeDifference(tweet.time));
         }
     }

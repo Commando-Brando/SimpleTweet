@@ -1,6 +1,7 @@
 package com.codepath.apps.SimpleTweetApp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -67,6 +68,7 @@ public class TimelineActivity extends AppCompatActivity {
         LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
         rvTweets.setLayoutManager(LayoutManager);
         rvTweets.setAdapter(adapter);
+        rvTweets.addItemDecoration(new DividerItemDecoration(rvTweets.getContext(), DividerItemDecoration.VERTICAL));
 
         scrollListener = new EndlessRecyclerViewScrollListener(LayoutManager) {
             @Override
