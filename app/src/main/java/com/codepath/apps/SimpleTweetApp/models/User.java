@@ -2,11 +2,13 @@ package com.codepath.apps.SimpleTweetApp.models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /*
     User class is a blueprint for a user's data
     It takes in a Json object and then parses the data and returns it using a static method
  */
+@Parcel
 public class User {
 
     public String name;

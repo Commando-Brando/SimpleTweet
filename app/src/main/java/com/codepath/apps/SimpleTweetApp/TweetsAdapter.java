@@ -1,10 +1,13 @@
 package com.codepath.apps.SimpleTweetApp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.SimpleTweetApp.models.Tweet;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -68,6 +73,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     // our ViewHolder that inflates the view
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        RelativeLayout container;
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
@@ -76,6 +82,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.container);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
@@ -91,6 +98,15 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             tvDisplayName.setText(tweet.user.displayName);
             Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             tvTime.setText(TimeFormatter.getTimeDifference(tweet.time));
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(context, DetailActivity.class);
+                    i.putExtra("tweet", Parcels.wrap(tweet));
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }
