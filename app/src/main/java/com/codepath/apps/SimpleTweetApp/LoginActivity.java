@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.codepath.apps.SimpleTweetApp.models.SampleModel;
 import com.codepath.apps.SimpleTweetApp.models.SampleModelDao;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
@@ -19,6 +21,12 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		getSupportActionBar().setLogo(R.drawable.ic_twitter_bird);
+		getSupportActionBar().setDisplayUseLogoEnabled(true);
 
 		final SampleModel sampleModel = new SampleModel();
 		sampleModel.setName("CodePath");

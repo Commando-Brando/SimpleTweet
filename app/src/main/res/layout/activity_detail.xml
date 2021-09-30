@@ -7,12 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
     <TextView
         android:id="@+id/tvDisplayName3"
         style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/ivProfileImage2"
@@ -55,9 +59,9 @@
         android:id="@+id/ivProfileImage2"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         tools:srcCompat="@tools:sample/avatars" />
 </RelativeLayout>

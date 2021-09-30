@@ -1,6 +1,7 @@
 package com.codepath.apps.SimpleTweetApp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.media.Image;
 import android.os.Bundle;
@@ -26,6 +27,12 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_twitter_bird);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         ivProfile = findViewById(R.id.ivProfileImage2);
         tvDisplayName = findViewById(R.id.tvDisplayName3);
